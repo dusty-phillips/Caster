@@ -25,6 +25,7 @@ class TextFormat():
     4 pebble - words.with.fullstops
     5 incline - words/with/slashes
     6 descent - words\with\backslashes
+    7 scotia - words::with::double::colon
     '''
 
     @classmethod
@@ -59,6 +60,9 @@ class TextFormat():
                 t = "/".join(t.split(" "))
             elif spacing == 6:
                 t = "\\".join(t.split(" "))
+            elif spacing == 7:
+                t = "::".join(t.split(" "))
+
         return t
 
     @classmethod
@@ -71,7 +75,8 @@ class TextFormat():
             3: "snake",
             4: "pebble",
             5: "incline",
-            6: "descent"
+            6: "descent",
+            7: "Scotia",
         }
         if capitalization == 0 and spacing == 0:
             return "<none>"

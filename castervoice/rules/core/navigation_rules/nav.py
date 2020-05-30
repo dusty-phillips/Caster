@@ -304,6 +304,7 @@ class Navigation(MergeRule):
                 "incline": 5,
                 "dissent": 6,
                 "descent": 6,
+                "Scotia": 7,
             }),
         Choice("semi", tell_commands_dict),
         Choice("word_limit", {

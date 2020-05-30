@@ -80,10 +80,10 @@ class NavigationNon(MappingRule):
             R(Key("w-up")),
         "move window":
             R(Key("a-space, r, a-space, m")),
-        "window (left | lease) [<n>]":
-            R(Key("w-left"))*Repeat(extra="n"),
-        "window (right | ross) [<n>]":
-            R(Key("w-right"))*Repeat(extra="n"),
+        # "window (left | lease) [<n>]":
+        #     R(Key("w-left"))*Repeat(extra="n"),
+        # "window (right | ross) [<n>]":
+        #     R(Key("w-right"))*Repeat(extra="n"),
         "monitor (left | lease) [<n>]":
             R(Key("sw-left"))*Repeat(extra="n"),
         "monitor (right | ross) [<n>]":
