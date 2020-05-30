@@ -1,4 +1,4 @@
-from dragonfly import Repeat, Pause, Function, Choice, MappingRule
+from dragonfly import Repeat, Pause, Function, Choice, MappingRule, Dictation
 
 from castervoice.lib.actions import Key, Mouse, Text
 
@@ -52,8 +52,8 @@ class ChromeRule(MappingRule):
             R(Key("a-home")),
         "[show] history":
             R(Key("c-h")),
-        "address bar":
-            R(Key("c-l")),
+        "address bar|manpower [<text>]":
+            R(Key("c-l") + Text("%(text)s"), rdescript="Show address bar and enter text"),
         "[show] downloads":
             R(Key("c-j")),
         "[add] bookmark":
@@ -134,7 +134,8 @@ class ChromeRule(MappingRule):
                 "eighth": "8",
             }),
         IntegerRefST("n", 1, 100),
-        IntegerRefST("m", 1, 10)
+        IntegerRefST("m", 1, 10),
+        Dictation("text"),
     ]
     defaults = {"n": 1, "m":"", "nth": ""}
 
