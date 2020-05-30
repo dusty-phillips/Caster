@@ -26,7 +26,7 @@ class VSCodeNonCcrRule(MappingRule):
         # Moving around a file
         "[(go to | jump | jump to)] line <n>":
             R(Key("c-g") + Text("%(n)d") + Key("enter")),
-        "<action> [line] <ln1> [by <ln2>]":
+        "<action> line <ln1> [by <ln2>]":
             R(Function(navigation.action_lines)),
 
         "go back [<n>]":
@@ -64,6 +64,8 @@ class VSCodeNonCcrRule(MappingRule):
             R(Key("cs-j")),
         "output panel":
             R(Key("cs-u")),
+        "close panel | hide panel":
+            R(Key("c-k, u")),
         "markdown preview":
             R(Key("cs-v")),
         "markdown preview side":
@@ -75,12 +77,12 @@ class VSCodeNonCcrRule(MappingRule):
         # File Management
         "copy path":
             R(Key("c-k, p")),
-        "[open] command palette [<text>]":
-            R(Key("cs-p") + Text("%(text)s"), rdescript="VS Code: Command Palette"),
+        "([open] command palette | manpower) [<text>]":
+            R(Key("c-r") + Text("%(text)s"), rdescript="VS Code: Command Palette"),
         "(open file | go to [tab]) [<text>]":
-            R(Key("c-p") + Text("%(text)s"), rdescript="VS Code: Go to File without using dialogbox"),
+            R(Key("c-e") + Text("%(text)s"), rdescript="VS Code: Go to File without using dialogbox"),
         "open project [<text>]":
-            R(Key("c-r") + Pause("30") + Text("%(text)s")),
+            R(Key("cs-r") + Pause("30") + Text("%(text)s")),
         "open dialogue":
             R(Key("c-o"), rdescript="VS Code: open file dialogbox"),
         "open folder":
@@ -90,13 +92,11 @@ class VSCodeNonCcrRule(MappingRule):
         "new file":
             R(Key("c-n")),
         "new window":
-            R(Key("cs-n")),
+            R(Key("ca-n")),
         "close window":
             R(Key("a-f4")),
         "close workspace":
             R(Key("c-k, f")),
-        "close editor":
-            R(Key("c-f4")),
         "save as":
             R(Key("cs-s")),
         "save all":
@@ -155,14 +155,22 @@ class VSCodeNonCcrRule(MappingRule):
         # Editor Management
         "close editor":
             R(Key("c-w")),
+        "close all editors":
+            R(Key("c-k, c-w")),
         "close folder":
             R(Key("c-k, f")),
-        "split editor":
+        "horizontal split":
             R(Key("c-backslash")),
-        "next pane":
-            R(Key("c-k, c-right")),
-        "(prior | previous | un) pane":
+        "vertical split":
+            R(Key("c-k, c-backslash")),
+        "left pane":
             R(Key("c-k, c-left")),
+        "(rate | right) pane":
+            R(Key("c-k, c-right")),
+        "above pane":
+            R(Key("c-k, c-up")),
+        "below pane":
+            R(Key("c-k, c-down")),
         "move tab left":
             R(Key("ca-left"),
             rdescript="VS Code: Move the current tab to the editor pane on the left."),
@@ -175,6 +183,14 @@ class VSCodeNonCcrRule(MappingRule):
         "shift group right":
             R(Key("c-k, right"),
               rdescript="VS Code: Shift Current Group of Tabs to the Right E.g. Swap with Pane to the Right"
+              ),
+        "shift group up":
+            R(Key("c-k, up"),
+              rdescript="VS Code: Shift Current Group of Tabs upword E.g. Swap with Pane above",
+              ),
+        "shift group down":
+            R(Key("c-k, down"),
+              rdescript="VS Code: Shift Current Group of Tabs downward E.g. Swap with Pane below",
               ),
         "<nth> tab":
             R(Key("c-%(nth)s")),
@@ -267,7 +283,7 @@ class VSCodeNonCcrRule(MappingRule):
         "run this line":
             R(Key("csa-l")),
         "join line":
-            R(Key("f1") + Text("join lines") + Key("enter")),
+            R(Key("c-j")),
 
         # requires gitlens extension
         "toggle blame":
@@ -286,6 +302,10 @@ class VSCodeNonCcrRule(MappingRule):
             R(Key("ca-j")),
         "mark next":
             R(Key("ca-l")),
+
+        # requires custom vscode task and keybinding
+        "get commit":
+            R(Key("c-k, f8"))
     }
     extras = [
         Dictation("text"),

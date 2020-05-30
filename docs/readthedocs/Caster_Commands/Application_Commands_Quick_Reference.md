@@ -662,7 +662,7 @@ Same Commands as [Git Bash](#git-bash)
 | `find in files`                        | `replace in files`                    | `next find`                              |
 | `(prior / previous) find`              | `select all occurrences`              | `toggle regex`                           |
 | `toggle whole word`                    | `(Find / Jump [to]) previous <text>`  | `show all symbols`                       |
-| `go to symbol`                         | `close editor`                        | `close folder`                           |
+| `go to symbol`                         | `close all editors`                   | `close folder`                           |
 | `split editor`                         | `next pane`                           | `(prior / previous / un) pane`           |
 | `shift group left`                     | `shift group left`                    | `<nth> tab`                              |
 | `Go to definition`                     | `Go to required definition`           | `peak definition`                        |
