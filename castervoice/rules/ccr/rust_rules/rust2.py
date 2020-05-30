@@ -17,17 +17,13 @@ class RustNon(MappingRule):
             R(Text("dbg!(&)") + Key("left")),
         "ternary":
             R(Text("if TOKEN == TOKEN { TOKEN } else { TOKEN }")),
-        "function [<return>]":
-            R(Text("fn TOKEN(TOKEN)%(return)s{}")),
         "infinite loop":
             R(Text("loop {}") + Key("left")),
         "unwrap":
             R(Text(".unwrap()"))
     }
     extras = [
-        Choice("return", {"return": " -> TOKEN "}),
     ]
-    defaults = {"return": " "}
 
 
 def get_rule():

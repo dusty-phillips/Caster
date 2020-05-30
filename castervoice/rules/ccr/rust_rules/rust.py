@@ -23,11 +23,11 @@ class Rust(MergeRule):
         SymbolSpecs.SWITCH:
             R(Text("match ")),
         SymbolSpecs.CASE:
-            R(Text(" => ")),
+            R(Key("end") + Text(" => ")),
         SymbolSpecs.BREAK:
             R(Text("break;")),
-        SymbolSpecs.DEFAULT:
-            R(Text("_")),
+        # SymbolSpecs.DEFAULT:
+        #     R(Text("_")),
         #
         SymbolSpecs.DO_LOOP:
             R(Text("while {TOKEN;TOKEN}{}")),
@@ -85,7 +85,7 @@ class Rust(MergeRule):
             R(Text("for (%(a)s, TOKEN) in (0..%(n)d).enumerate() {}") + Key("left")),
         "enumerate for each [<a> <b>]":
             R(Text("for (%(a)s, %(b)s) in TOKEN.enumerate() {}") + Key("left")),
-        "bind [<mutability>]":
+        "assign [<mutability>]":
             R(Text("let %(mutability)s")),
         "of type":
             R(Text(": ")),
@@ -95,8 +95,6 @@ class Rust(MergeRule):
             R(Text("f%(fbits)s ")),
         "boolean":
             R(Text("bool ")),
-        "string":
-            R(Text("String ")),
         "array [of] size <n>":
             R(Text("[TOKEN; %(n)d]")),
         "macro vector":
@@ -109,10 +107,16 @@ class Rust(MergeRule):
             R(Text("static ")),
         "self":
             R(Text("self")),
-        "brace pan":
-            R(Key("escape, escape, end, left, enter, enter, up, tab")),
         "enum":
             R(Text("enum ")),
+        "await":
+            R(Text(".await")),
+        "async":
+            R(Text("async ")),
+        "clone":
+            R(Text(".clone()")),
+        "rusty pub [<crate>]":
+            R(Text("pub%(crate)s ")),
         "await":
             R(Text(".await")),
         "async":
@@ -139,8 +143,9 @@ class Rust(MergeRule):
         IntegerRefST("n", 0, 1000),
         alphabet_support.get_alphabet_choice("a"),
         alphabet_support.get_alphabet_choice("b"),
+        Choice("crate", {"crate": "(crate)"}),
     ]
-    defaults = {"bits": "32", "signed": "i", "mutability": "", "a": "i", "b": "j", "n": 1}
+    defaults = {"bits": "32", "signed": "i", "mutability": "", "a": "i", "b": "j", "n": 1, "crate": ""}
 
 
 def get_rule():
