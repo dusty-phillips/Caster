@@ -8,6 +8,7 @@ from castervoice.lib.merge.state.short import R
 class MSWordRule(MappingRule):
     mapping = {
         "insert image": R(Key("alt, n, p")),
+        "insert comment": R(Key("ca-m"))
     }
     extras = [
         Dictation("dict"),
